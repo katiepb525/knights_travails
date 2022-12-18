@@ -11,7 +11,7 @@ class Knight
 
   def get_possible_moves
     # list of possible directions: up two left one, up two right one, down two left one, down two right one
-    possible_directions = [[1, 2], [-1, 2], [1, -2], [-1, -2]]
+    possible_directions = { u2_l1 => [1, 2], u2_r1 => [-1, 2], d2_l1 => [1, -2], d2_r1 => [-1, -2] }
 
     # a list of possible moves going down
 
