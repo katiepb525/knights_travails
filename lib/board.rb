@@ -7,7 +7,8 @@ class Board
     end
 end
 
-class Knight
+class Board
+  attr_reader :grid
 
 end
 
