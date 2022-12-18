@@ -26,4 +26,3 @@ end
 
 board = Board.new
 
-p board.createGrid(8, 8)
