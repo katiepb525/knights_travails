@@ -9,9 +9,9 @@ class Knight
 
 # create a list of possible moves **from a given square**
 
-  def get_possible_moves # given starting square as parameter
-    # list of possible directions: up two left one, up two right one, down two left one, down two right one
-    possible_directions = { u2_l1 => [1, 2], u2_r1 => [-1, 2], d2_l1 => [1, -2], d2_r1 => [-1, -2] }
+  def get_possible_moves(place, board) # given starting square as parameter
+    # list of possible directions (added to x and y)
+    possible_directions = { l1_u2 => [-1, 2], r1_u2 => [1, 2], l1_d2 => [-1, -2], r1_d2 => [1, -2], l2_u1 [-2, 1], l2_d1 [-2, -1], r2_u1[2, 1], r2_d1[2, -1] }
 
     # create adjacency matrix to store all possible moves **from given square**
 
