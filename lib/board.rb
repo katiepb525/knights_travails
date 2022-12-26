@@ -13,7 +13,9 @@ class Board
   attr_reader :grid
 
   def initialize
-    @grid = createGrid(8, 8)
+    @height = 8
+    @width = 8
+    @grid = createGrid(@width, @height)
   end
 
   # create an 8x8 grid with all possible cordinates (undirected edge list)
@@ -25,4 +27,3 @@ class Board
 end
 
 board = Board.new
-
