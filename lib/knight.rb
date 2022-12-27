@@ -24,8 +24,8 @@ class Knight
     
       # # get sum of x values
       result = []
-      result.push((place[:x] + possible_directions[k][0]) - 1)
-      result.push((place[:x] + possible_directions[k][1]) - 1)
+      result.push((place[:x] + possible_directions[k][0]))
+      result.push((place[:y] + possible_directions[k][1]))
 
       # catch instances of x or y values being above eight
       if result[0] > 8 or result[1] > 8
