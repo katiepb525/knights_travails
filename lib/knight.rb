@@ -51,7 +51,7 @@ board.grid
 
 knight = Knight.new
 
-place = { :x => 0, :y => 0}
+place = { :x => 4, :y => 3}
 
 possible_moves = knight.get_possible_moves(place, board)
 
