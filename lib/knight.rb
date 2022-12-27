@@ -19,20 +19,24 @@ class Knight
     # 0 is default
     matrix = Array.new(board.height) { Array.new(board.width, 0)}
 
-    # starting from given place in matrix (e.g. matrix[0][0])
-    # result = place + direction
-    # if result.x > 8 or result.y > 8
-      # assign value to place in adjacency matrix to 0
-    # else
-      # assign value to place in adjacency matrix to 1
+    # for every key in possible directions
+    possible_directions.each do |k, v|
     
-    # if end of current matrix row is reached (e.g. matrix[0][8])
-      # move to next matrix row (e.g. matrix[1][0])
-    # elsif last row hasn't been reached (e.g. matrix[8][8])
-      # start == next place in matrix (e.g. matrix[0][1])
-    # else
-      # return adajcency matrix
+      # # get sum of x values
+      result = []
+      result.push((place[:x] + possible_directions[k][0]) - 1)
+      result.push((place[:x] + possible_directions[k][1]) - 1)
 
+      # catch instances of x or y values being above eight
+      if result[0] > 8 or result[1] > 8
+        next
+      else
+        # mark edge using result's axis values
+        matrix[(result[1])][(result[0])] = 1
+      end
+      
+    end  
+    matrix
   end
 end
 
