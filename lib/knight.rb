@@ -22,13 +22,15 @@ class Knight
     # for every key in possible directions
     possible_directions.each do |k, v|
     
+      # binding.pry
       # # get sum of x values
       result = []
       result.push((place[:x] + possible_directions[k][0]))
       result.push((place[:y] + possible_directions[k][1]))
 
       # catch instances of x or y values being above eight
-      if result[0] > 8 or result[1] > 8
+      # catch instances of x or y values being less than zero
+      if result[0] > 8 || result[1] > 8 || result[0].negative? || result[1].negative?
         next
       else
         # mark edge using result's axis values
