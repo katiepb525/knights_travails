@@ -10,7 +10,7 @@ class Place
 end
 
 class Board
-  attr_reader :grid
+  attr_reader :grid, :height, :width
 
   def initialize
     @height = 8
