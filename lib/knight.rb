@@ -15,6 +15,9 @@ class Knight
       :l2_u1 => [-2, 1], :l2_d1 => [-2, -1], :r2_u1 => [2, 1], :r2_d1 => [2, -1] }
 
     # create adjacency matrix to store all possible moves **from given square**
+    # use dimensions of board to determine size of matrix
+    # 0 is default
+    matrix = Array.new(board.height) { Array.new(board.width, 0)}
 
     # starting from given place in matrix (e.g. matrix[0][0])
     # result = place + direction
