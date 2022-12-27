@@ -11,8 +11,8 @@ class Knight
 
   def get_possible_moves(place, board) # given starting square as parameter
     # list of possible directions (added to x and y)
-    possible_directions = { l1_u2 => [-1, 2], r1_u2 => [1, 2], l1_d2 => [-1, -2], r1_d2 => [1, -2], 
-      l2_u1 => [-2, 1], l2_d1 => [-2, -1], r2_u1 => [2, 1], r2_d1 => [2, -1] }
+    possible_directions = { :l1_u2 => [-1, 2], :r1_u2 => [1, 2], :l1_d2 => [-1, -2], :r1_d2 => [1, -2],
+      :l2_u1 => [-2, 1], :l2_d1 => [-2, -1], :r2_u1 => [2, 1], :r2_d1 => [2, -1] }
 
     # create adjacency matrix to store all possible moves **from given square**
 
