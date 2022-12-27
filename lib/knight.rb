@@ -1,10 +1,10 @@
 require_relative 'board'
-
+require 'pry-byebug'
 # frozen_string_literal: true
 
 class Knight
   def initialize
-    @possible_moves = get_possible_moves
+    # @possible_moves = get_possible_moves
   end
 
 # create a list of possible moves **from a given square**
@@ -40,6 +40,21 @@ class Knight
   end
 end
 
+
+
+
 board = Board.new
 
-p board.grid
+board.grid
+
+knight = Knight.new
+
+place = { :x => 0, :y => 0}
+
+possible_moves = knight.get_possible_moves(place, board)
+
+possible_moves.each_with_index do |e|
+  p e
+end
+
+p possible_moves[2][1]
