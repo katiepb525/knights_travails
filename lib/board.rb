@@ -43,17 +43,18 @@ class Board
   attr_reader :grid, :height, :width
 
   def initialize
-    @height = 8
-    @width = 8
-    @grid = createGrid(@width, @height)
+    @size = 8
+    @grid = createGrid(@size)
   end
 
   # create an 8x8 grid with all possible cordinates (undirected edge list)
-  def createGrid(width, height)
-    (0..width).to_a.product((0..height).to_a).map do |x, y|
-      Place.new(x, y)
+  def createGrid(size)
+    (0..size).to_a.product((0..size).to_a).map do |x, y|
+      Place.new(x, y, size)
     end
   end
 end
 
 board = Board.new
+
+p board.grid
