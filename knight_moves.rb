@@ -3,7 +3,7 @@
 require 'pry-byebug'
 
 class Knight
-  def get_legal_moves(x, y, board_size)
+  def get_legal_moves(x, y)
     # list of possible directions (added to x and y)
     possible_directions = { l1_u2: [-1, 2], r1_u2: [1, 2], l1_d2: [-1, -2], r1_d2: [1, -2],
                             l2_u1: [-2, 1], l2_d1: [-2, -1], r2_u1: [2, 1], r2_d1: [2, -1] }
@@ -37,4 +37,4 @@ end
 
 knight = Knight.new
 
-p knight.get_legal_moves(4,3,8)
+p knight.get_legal_moves(4,3)
