@@ -34,7 +34,11 @@ class Knight
     # create a queue to store the coord to be looked at, intialized with start
     queue = [start_coord]
 
-    
+    # while the coord being looked at is NOT the end coord
+    while (!queue[0][0] === end[0] && queue[0][1] === end[1])
+
+
+
   end
 end
 
