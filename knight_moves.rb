@@ -31,7 +31,10 @@ class Knight
 # find shortest possible path from a given start to a given end set of coords
   def knight_moves(start_coord, end_coord)
 
+    # create a queue to store the coord to be looked at, intialized with start
+    queue = [start_coord]
 
+    
   end
 end
 
