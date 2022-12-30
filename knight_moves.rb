@@ -50,6 +50,10 @@ class Knight
 
       # for every legal move
       available_moves.each do |move|
+        # remove any moves that are not close to end
+        # breadth first search looks and queues NEIGHBORS
+
+
         next if visited_moves.include?(move)
         # push into queue
         queue.push(move)
@@ -61,6 +65,12 @@ class Knight
   end
 end
 
+# compare distances between possible moves and end coord
+def find_neighbors(possible_moves, end_coord)
+
+
+end
+
 knight = Knight.new
 
-p knight.knight_moves([3,3],[0,0])
+p knight.get_legal_moves(0,0)
