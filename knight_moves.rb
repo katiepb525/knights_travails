@@ -42,8 +42,12 @@ class Knight
       # get legal moves for current coord
       available_moves = get_legal_moves(current[0], current[1])
 
+      # for every legal move
+      available_moves.each do |move|
+        # push into queue
+        queue.push(move)
+      end
 
-    
     end
   end
 end
