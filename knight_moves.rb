@@ -38,7 +38,7 @@ class Knight
     visited_moves = []
 
     # while the coord being looked at is NOT the end coord
-    while (!queue[0][0] === end_coord[0] && queue[0][1] === end_coord[1])
+    while !(queue[0][0] == end_coord[0] && queue[0][1] == end_coord[1])
       # shift the queue and store current coord
       current = queue.shift
 
