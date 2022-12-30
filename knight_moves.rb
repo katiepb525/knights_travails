@@ -28,7 +28,7 @@ class Knight
     legal_moves
   end
 
-
+# find shortest possible path from a given start to a given end set of coords
   def knight_moves(start_coord, end_coord)
 
 
