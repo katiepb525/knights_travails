@@ -34,10 +34,16 @@ class Knight
     # create a queue to store the coord to be looked at, intialized with start
     queue = [start_coord]
 
+    # store visited moves
+    visited_moves = []
+
     # while the coord being looked at is NOT the end coord
     while (!queue[0][0] === end_coord[0] && queue[0][1] === end_coord[1])
       # shift the queue and store current coord
       current = queue.shift
+
+      # store current as visited
+      visited_moves.push(current)
 
       # get legal moves for current coord
       available_moves = get_legal_moves(current[0], current[1])
@@ -49,6 +55,8 @@ class Knight
       end
 
     end
+    visited_moves.push(end_coord)
+    visited_moves
   end
 end
 
