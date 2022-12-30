@@ -39,6 +39,10 @@ class Knight
       # shift the queue and store current coord
       current = queue.shift
 
+      # get legal moves for current coord
+      available_moves = get_legal_moves(current[0], current[1])
+
+
     
     end
   end
