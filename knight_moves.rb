@@ -50,6 +50,7 @@ class Knight
 
       # for every legal move
       available_moves.each do |move|
+        next if visited_moves.include?(move)
         # push into queue
         queue.push(move)
       end
@@ -62,4 +63,4 @@ end
 
 knight = Knight.new
 
-p knight.get_legal_moves(4,3)
+p knight.knight_moves([3,3],[0,0])
