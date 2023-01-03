@@ -52,7 +52,7 @@ class Knight
       # shift the queue and store current coord
       current = queue.shift
 
-      return if current == end_coord
+      break if current == end_coord
 
 
       # store current as visited
