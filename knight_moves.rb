@@ -31,7 +31,10 @@ class Knight
   
   # find distance between two coordinates
   def find_distance(possible_moves, end_coord)
-
+    # d = sqrt(( x2 - x1 )^2 + (y2 -  y1)^2)
+    dist = Math.sqrt((end_coord[0] - possible_moves[0]) ** 2 + (end_coord[1] - possible_moves[1]) ** 2)
+    # round to tenths
+    dist.round(1)
   end
 
   # find shortest possible path from a given start to a given end set of coords
@@ -74,4 +77,4 @@ end
 
 knight = Knight.new
 
-p knight.get_legal_moves(0,0)
+p knight.find_distance([0,0],[3,4])
