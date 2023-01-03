@@ -79,9 +79,12 @@ class Knight
       lowest_two = distances.each_with_index.min(2)
 
 
-        next if visited_moves.include?(move)
-        # push into queue
-        queue.push(move)
+
+      # push moves with shortest distance into queue, if its not already visited
+      if !(visited_moves.include?(available_moves[lowest_two[0][1]]))
+        queue.push(available_moves[lowest_two[0][1]])
+      else
+       queue.push(available_moves[lowest_two[1][1]])
       end
 
     end
@@ -93,4 +96,5 @@ end
 
 knight = Knight.new
 
-p knight.find_distance([0,0],[3,4])
+
+p knight.knight_moves([0,0],[1,2])
