@@ -28,7 +28,13 @@ class Knight
     legal_moves
   end
 
-# find shortest possible path from a given start to a given end set of coords
+  
+  # compare distances between possible moves and end coord
+  def find_neighbors(possible_moves, end_coord)
+
+  end
+
+  # find shortest possible path from a given start to a given end set of coords
   def knight_moves(start_coord, end_coord)
 
     # create a queue to store the coord to be looked at, intialized with start
@@ -65,11 +71,6 @@ class Knight
   end
 end
 
-# compare distances between possible moves and end coord
-def find_neighbors(possible_moves, end_coord)
-
-
-end
 
 knight = Knight.new
 
