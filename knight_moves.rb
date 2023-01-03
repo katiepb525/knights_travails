@@ -29,8 +29,8 @@ class Knight
   end
 
   
-  # compare distances between possible moves and end coord
-  def find_neighbors(possible_moves, end_coord)
+  # find distance between two coordinates
+  def find_distance(possible_moves, end_coord)
 
   end
 
