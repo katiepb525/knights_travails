@@ -61,10 +61,22 @@ class Knight
       # get legal moves for current coord
       available_moves = get_legal_moves(current[0], current[1])
 
+      # initalize/reset array storing distances
+      distances = []
+
       # for every legal move
       available_moves.each do |move|
-        # remove any moves that are not close to end
-        # breadth first search looks and queues NEIGHBORS
+        # skip if move has already been visited
+        # next if visited_moves.include?(move)
+        # get distance of each to end coord
+        curr_dist = find_distance(move, end_coord)
+        # push into new array with distances
+        distances.push(curr_dist)
+      end
+
+      # find the two lowest distances from array + their index
+      # will return nested array
+      lowest_two = distances.each_with_index.min(2)
 
 
         next if visited_moves.include?(move)
