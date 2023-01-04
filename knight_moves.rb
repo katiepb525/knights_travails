@@ -56,18 +56,20 @@ class Knight
 
       break if current == end_coord
 
-
       # store current as visited
       visited_moves.push(current)
+
 
       # get legal moves for current coord
       available_moves = get_legal_moves(current[0], current[1])
 
+      
       # initalize/reset array storing distances
       distances = []
 
       # for every legal move
       available_moves.each do |move|
+        
         # skip if move has already been visited
         # next if visited_moves.include?(move)
         # get distance of each to end coord
@@ -79,7 +81,6 @@ class Knight
       # find the two lowest distances from array + their index
       # will return nested array
       lowest_two = distances.each_with_index.min(2)
-
 
 
       # push moves with shortest distance into queue, if its not already visited
