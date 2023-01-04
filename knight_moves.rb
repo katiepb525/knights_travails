@@ -5,9 +5,11 @@ require 'pry-byebug'
 class Knight
   def get_legal_moves(x, y)
     # list of possible directions (added to x and y)
-    possible_directions = { l1_u2: [-1, 2], r1_u2: [1, 2], l1_d2: [-1, -2], r1_d2: [1, -2],
-                            l2_u1: [-2, 1], l2_d1: [-2, -1], r2_u1: [2, 1], r2_d1: [2, -1] }
+    # possible_directions = { l1_u2: [-1, 2], r1_u2: [1, 2], l1_d2: [-1, -2], r1_d2: [1, -2],
+    #                         l2_u1: [-2, 1], l2_d1: [-2, -1], r2_u1: [2, 1], r2_d1: [2, -1] }
 
+    possible_directions = {  l2_u1: [-2, 1], l1_u2: [-1, 2], r2_u1: [2, 1], r1_u2: [1, 2], l2_d1: [-2, -1], l1_d2: [-1, -2], 
+        r2_d1: [2, -1], r1_d2: [1, -2] }
     # store possible legal moves in nested array [[1,2],[2,-3]...]
     legal_moves = []
     
@@ -96,5 +98,6 @@ end
 
 knight = Knight.new
 
-
-p knight.knight_moves([0,0],[1,2])
+p knight.knight_moves([0,0], [3,3])
+p knight.knight_moves([3,3], [0,0])
+p knight.knight_moves([3,3], [4,3])
