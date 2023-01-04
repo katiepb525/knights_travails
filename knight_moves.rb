@@ -50,30 +50,23 @@ class Knight
 
     # while the coord being looked at is NOT the end coord
     while !queue.empty?
-
       # shift the queue and store current coord
       current = queue.shift
 
       break if current == end_coord
 
-      # store current as visited
-      visited_moves.push(current)
-
-
       # get legal moves for current coord
       available_moves = get_legal_moves(current[0], current[1])
-
       
       # initalize/reset array storing distances
       distances = []
 
-      # for every legal move
+      # get distances for every legal move
       available_moves.each do |move|
-        
-        # skip if move has already been visited
-        # next if visited_moves.include?(move)
+
         # get distance of each to end coord
         curr_dist = find_distance(move, end_coord)
+
         # push into new array with distances
         distances.push(curr_dist)
       end
@@ -81,15 +74,22 @@ class Knight
       # find the two lowest distances from array + their index
       # will return nested array
       lowest_two = distances.each_with_index.min(2)
-
-
+      
+      
       # push moves with shortest distance into queue, if its not already visited
       if !(visited_moves.include?(available_moves[lowest_two[0][1]]))
         queue.push(available_moves[lowest_two[0][1]])
-      else
-       queue.push(available_moves[lowest_two[1][1]])
-      end
+        visited_moves.push(current)
 
+      elsif !(visited_moves.include?(available_moves[lowest_two[1][1]]))
+        queue.push(available_moves[lowest_two[1][1]])
+        visited_moves.push(current)
+      else
+        p visited_moves
+        puts "error?!"
+        return
+      end
+      
     end
     visited_moves.push(end_coord)
     visited_moves
