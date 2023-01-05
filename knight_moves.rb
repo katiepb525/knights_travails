@@ -38,13 +38,6 @@ class Knight
     legal_moves
   end
 
-  # find distance between two coordinates
-  def find_distance(possible_moves, end_coord)
-    # d = sqrt(( x2 - x1 )^2 + (y2 -  y1)^2)
-    dist = Math.sqrt((end_coord[0] - possible_moves[0])**2 + (end_coord[1] - possible_moves[1])**2)
-    # return float rounded to tenths
-    dist.round(1)
-  end
 
   # find shortest possible path from a given start to a given end set of coords
   def knight_moves(start_coord, end_coord)
@@ -65,34 +58,7 @@ class Knight
       # get legal moves for current coord
       available_moves = get_legal_moves(current[0], current[1])
 
-      # initalize/reset array storing distances
-      distances = []
 
-      # get distances for every legal move
-      available_moves.each do |move|
-        # get distance of each to end coord
-        curr_dist = find_distance(move, end_coord)
-
-        # push into new array with distances
-        distances.push(curr_dist)
-      end
-
-      # find the two lowest distances from array + their index
-      # will return nested array
-      lowest_two = distances.each_with_index.min(2)
-
-      # push moves with shortest distance into queue, if its not already visited
-      if !visited_moves.include?(available_moves[lowest_two[0][1]])
-        queue.push(available_moves[lowest_two[0][1]])
-        visited_moves.push(current)
-      elsif !visited_moves.include?(available_moves[lowest_two[1][1]])
-        queue.push(available_moves[lowest_two[1][1]])
-        visited_moves.push(current)
-      else
-        p visited_moves
-        puts 'error?!'
-        return
-      end
     end
     # return array of visited moves with the end coordinate
     visited_moves.push(end_coord)
