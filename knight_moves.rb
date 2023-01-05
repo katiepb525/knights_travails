@@ -2,6 +2,13 @@
 
 require 'pry-byebug'
 
+class Place
+  def initialize(position, legal_moves)
+    @position = position
+    @legal_moves = legal_moves
+  end
+end
+
 class Knight
   def get_legal_moves(x, y)
     # list of possible directions (added to x and y)
@@ -95,7 +102,10 @@ end
 
 knight = Knight.new
 
-p knight.knight_moves([0, 0], [1, 2])
-p knight.knight_moves([0, 0], [3, 3])
-p knight.knight_moves([3, 3], [0, 0])
-p knight.knight_moves([3, 3], [4, 3])
+place1 = Place.new([3,3], knight.get_legal_moves([4,3]))
+place2 = Place.new([4,3], knight.get_legal_moves[4,3])
+
+# p knight.knight_moves([0, 0], [1, 2])
+# p knight.knight_moves([0, 0], [3, 3])
+# p knight.knight_moves([3, 3], [0, 0])
+p knight.knight_moves(place1, place2)
