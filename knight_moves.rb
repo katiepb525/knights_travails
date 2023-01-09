@@ -3,45 +3,49 @@
 require 'pry-byebug'
 
 class Place
-  attr_accessor :x, :y, :predecessor, :legal_moves, :distance
+  attr_accessor :x, :y, :predecessor, :distance
   
-  def initialize(x, y, predecessor=nil, distance=nil, legal_moves=nil)
+  def initialize(x, y, predecessor=nil, distance=nil )
     @x = x
     @y = y
     @predecessor = predecessor
     @distance = distance
-    @legal_moves = legal_moves
   end
 end
 
 class Knight
 
-  # create adjacency list/graph of legal moves from single place
+  # create a linked list from single place to later place into adjacency list
 
   def legal_moves(place)
     # list of possible directions (added to x and y)
     possible_directions = { l2_u1: [-2, 1], l1_u2: [-1, 2], r2_u1: [2, 1], r1_u2: [1, 2], l2_d1: [-2, -1], l1_d2: [-1, -2],
                             r2_d1: [2, -1], r1_d2: [1, -2] }
 
+    # initalize array
+    list = []
+
     # for every key in possible directions
     possible_directions.each do |k, _v|
 
       # get sum of x + y values
       result = []
-      result.push((x + possible_directions[k][0]))
-      result.push((y + possible_directions[k][1]))
+      result.push((place.x + possible_directions[k][0]))
+      result.push((place.y + possible_directions[k][1]))
 
-      # catch instances of x or y values being above (or equal to) eight
-      # catch instances of x or y values being less than zero
+      # catch instances of x or y values being above (or equal to) eight (cause we cant go past 7,7)
+      # catch instances of x or y values being less than zero (cause there are no values below 0,0)
       next if result[0] >= 8 || result[1] >= 8 || result[0].negative? || result[1].negative?
 
-      # create node for legal move
-      legal_move = Place.new(result)
-
-      p legal_move
+      # create new place node and push into list
+      place = Place.new(result[0], result[1])
+      list.push(place)
     end
 
+    return list
   end
+
+  # create an adjacency list that represents a board using linked lists
 
 
   # perform a breadth first search from a given start to a given end coordinate
@@ -86,10 +90,6 @@ class Knight
 end
 
 knight = Knight.new
+start = Place.new(3,3)
 
-p knight.get_legal_moves(0,0)
-
-
-p knight.knight_moves([0, 0], [3, 3])
-# p knight.knight_moves([3, 3], [0, 0])
-
+p knight.legal_moves(start)
