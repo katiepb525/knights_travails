@@ -18,34 +18,36 @@ class Knight
   # create a linked list from single place to later place into adjacency list
 
   def legal_moves(place)
-    # list of possible directions (added to x and y)
-    possible_directions = { l2_u1: [-2, 1], l1_u2: [-1, 2], r2_u1: [2, 1], r1_u2: [1, 2], l2_d1: [-2, -1], l1_d2: [-1, -2],
-                            r2_d1: [2, -1], r1_d2: [1, -2] }
-
+    # list of possible moves
+    possible_directions = [[2,1],[1,2],[-1,2],[-2,1],[-2,-1],[-1,-2],[1,-2],[2,-1]]
     # initalize array
     list = []
 
     # for every key in possible directions
-    possible_directions.each do |k, _v|
+    possible_directions.each do |k|
 
       # get sum of x + y values
       result = []
-      result.push((place.x + possible_directions[k][0]))
-      result.push((place.y + possible_directions[k][1]))
+      result.push((place.x + k[0]))
+      result.push((place.y + k[1]))
 
       # catch instances of x or y values being above (or equal to) eight (cause we cant go past 7,7)
       # catch instances of x or y values being less than zero (cause there are no values below 0,0)
       next if result[0] >= 8 || result[1] >= 8 || result[0].negative? || result[1].negative?
 
+      p result
+
       # create new place node and push into list
-      place = Place.new(result[0], result[1])
-      list.push(place)
+      new_place = Place.new(result[0], result[1])
+      list.push(new_place)
+
     end
 
     return list
+
   end
 
-  # create an adjacency list that represents a board using linked lists
+
 
 
   # perform a breadth first search from a given start to a given end coordinate
@@ -84,12 +86,13 @@ class Knight
         end
         p new_node
       end
-    end
+    end 
 
   end
 end
 
 knight = Knight.new
 start = Place.new(3,3)
+place_end = Place.new(4,3)
 
 p knight.legal_moves(start)
