@@ -13,12 +13,10 @@ class Place
     @legal_moves = legal_moves
   end
 end
-# in order to perform a breadth first search, you have to have a board to search from
 
 class Knight
   def get_legal_moves(x, y)
     # list of possible directions (added to x and y)
-
     possible_directions = { l2_u1: [-2, 1], l1_u2: [-1, 2], r2_u1: [2, 1], r1_u2: [1, 2], l2_d1: [-2, -1], l1_d2: [-1, -2],
                             r2_d1: [2, -1], r1_d2: [1, -2] }
 
