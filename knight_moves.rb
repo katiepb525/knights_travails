@@ -18,7 +18,7 @@ class Knight
 
   # create adjacency list/graph of legal moves from single place
 
-  def legal_moves(x, y)
+  def legal_moves(place)
     # list of possible directions (added to x and y)
     possible_directions = { l2_u1: [-2, 1], l1_u2: [-1, 2], r2_u1: [2, 1], r1_u2: [1, 2], l2_d1: [-2, -1], l1_d2: [-1, -2],
                             r2_d1: [2, -1], r1_d2: [1, -2] }
