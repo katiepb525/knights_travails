@@ -3,11 +3,15 @@
 require 'pry-byebug'
 
 class Place
-  def initialize(position, legal_moves)
+  attr_accessor :position, :parent, :legal_moves
+  
+  def initialize(position, parent=nil, legal_moves=nil)
     @position = position
+    @parent = parent
     @legal_moves = legal_moves
   end
 end
+# in order to perform a breadth first search, you have to have a board to search from
 
 class Knight
   def get_legal_moves(x, y)
@@ -16,12 +20,10 @@ class Knight
     possible_directions = { l2_u1: [-2, 1], l1_u2: [-1, 2], r2_u1: [2, 1], r1_u2: [1, 2], l2_d1: [-2, -1], l1_d2: [-1, -2],
                             r2_d1: [2, -1], r1_d2: [1, -2] }
 
-    # store possible legal moves in nested array [[1,2],[2,-3]...]
-    legal_moves = []
-
     # for every key in possible directions
     possible_directions.each do |k, _v|
-      # # get sum of x + y values
+
+      # get sum of x + y values
       result = []
       result.push((x + possible_directions[k][0]))
       result.push((y + possible_directions[k][1]))
@@ -30,48 +32,61 @@ class Knight
       # catch instances of x or y values being less than zero
       next if result[0] >= 8 || result[1] >= 8 || result[0].negative? || result[1].negative?
 
-      # add coordinate to list of legal moves
-      legal_moves.push([result[0], result[1]])
+      # create node for legal move
+      legal_move = Place.new(result)
+
+      p legal_move
     end
 
-    # return array of possible directions
-    legal_moves
   end
 
 
-  # find shortest possible path from a given start to a given end set of coords
+  # perform a breadth first search from a given start to a given end coordinate
   def knight_moves(start_coord, end_coord)
-    # create a queue to store the coord to be looked at, intialized with start
+
+    # convert start coord into a node
+    start_coord = Place.new(start_coord, nil, get_legal_moves(start_coord[0], start_coord[1]))
+
+    # create a queue to store the node to be looked at, intialized with start
     queue = [start_coord]
 
-    # store visited moves
-    visited_moves = []
+    # make a list of the visited nodes
+    visited_nodes = []
 
-    # while the coord being looked at is NOT the end coord
     until queue.empty?
-
-      # shift the queue and store current coord
+      # get node from beginning of queue and store current coord
       current = queue.shift
 
-      break if current == end_coord
+      # if the current node is the end node, stop
+      break if current.position == end_coord
 
-      # get legal moves for current coord
-      available_moves = get_legal_moves(current[0], current[1])
+      # look at all legal moves for current node
+      enq_list = current.legal_moves
 
+      # for each legal move
+      enq_list.each do |move|
+        # create a new node and set it's origin to current node being looked at
+        new_node = Place.new(move, current)
 
+        # if node hasn't been visited
+        if !(visited_nodes.include?(new_node))
+          # push into end of queue
+          queue.push(new_node)
+          # mark as visited
+          visited_nodes.push(new_node)
+        end
+        p new_node
+      end
     end
-    # return array of visited moves with the end coordinate
-    visited_moves.push(end_coord)
-    visited_moves
+
   end
 end
 
 knight = Knight.new
 
-place1 = Place.new([3,3], knight.get_legal_moves([4,3]))
-place2 = Place.new([4,3], knight.get_legal_moves[4,3])
+p knight.get_legal_moves(0,0)
 
-# p knight.knight_moves([0, 0], [1, 2])
-# p knight.knight_moves([0, 0], [3, 3])
+
+p knight.knight_moves([0, 0], [3, 3])
 # p knight.knight_moves([3, 3], [0, 0])
-p knight.knight_moves(place1, place2)
+
