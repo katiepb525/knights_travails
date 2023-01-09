@@ -3,11 +3,13 @@
 require 'pry-byebug'
 
 class Place
-  attr_accessor :position, :parent, :legal_moves
+  attr_accessor :x, :y, :predecessor, :legal_moves, :distance
   
-  def initialize(position, parent=nil, legal_moves=nil)
-    @position = position
-    @parent = parent
+  def initialize(x, y, predecessor=nil, distance=nil, legal_moves=nil)
+    @x = x
+    @y = y
+    @predecessor = predecessor
+    @distance = distance
     @legal_moves = legal_moves
   end
 end
