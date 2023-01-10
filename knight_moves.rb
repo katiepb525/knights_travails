@@ -59,33 +59,24 @@ class Knight
 
       # if the current node is the end node, stop
       if current.x == end_coord.x && current.y == end_coord.y
+        # store predecessors
         predecessors = []
-        p "first predecessor: #{current.x}, #{current.y}"
-        # push current to predecessors
-        predecessors.push(current);
+
+        # initialize predecessors with current
+        predecessors.push([current.x, current.y]);
 
         # store current parent being looked at
         curr_parent = current.predecessor
-        # push to predecessors
-        predecessors.push(curr_parent)
 
-        p "next predecessor: #{curr_parent.x}, #{curr_parent.y}"
-
-        # look at next parent
-        next_parent = curr_parent.predecessor
-
-        # loop through predecessors of each move and store in array
-        until (next_parent == start_coord) do
-          p "next predecessor: #{next_parent.x}, #{next_parent.y}"
+        until (curr_parent == start_coord) do
           # update current parent
-          predecessors.push(next_parent)
+          predecessors.push([curr_parent.x, curr_parent.y])
           # loop to next
-          next_parent = next_parent.predecessor
+          curr_parent = curr_parent.predecessor
         end
 
-        predecessors.push(next_parent)
-        p "last predecessor: #{next_parent.x}, #{next_parent.y}"
-        return
+        predecessors.push([curr_parent.x, curr_parent.y])
+        return predecessors
       end
 
       # look at all legal moves for current node
@@ -103,6 +94,8 @@ class Knight
         end
       end
     end 
+  end
+
 
   end
 end
