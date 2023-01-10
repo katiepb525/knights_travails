@@ -97,11 +97,15 @@ class Knight
   end
 
 
+  def knight_moves(start, place_end)
+    predecessors = bfs(start, place_end)
+    # print predecessors in reverse order (from start to finish)
+    predecessors.reverse_each { |e| print e, "\n"}
   end
 end
 
 knight = Knight.new
-start = Place.new(3,3)
-place_end = Place.new(4,3)
+start = Place.new(0,0)
+place_end = Place.new(7,7)
 
-p knight.knight_moves(start, place_end)
+knight.knight_moves(start, place_end)
