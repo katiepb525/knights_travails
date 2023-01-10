@@ -45,7 +45,7 @@ class Knight
   end
 
   # perform a breadth first search from a given start to a given end coordinate
-  def knight_moves(start_coord, end_coord)
+  def bfs(start_coord, end_coord)
 
     # initalize start's distance with 0
     start_coord.distance = 0;
