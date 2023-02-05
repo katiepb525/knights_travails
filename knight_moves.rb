@@ -1,11 +1,9 @@
 # frozen_string_literal: true
 
-require 'pry-byebug'
-
 class Place
   attr_accessor :x, :y, :predecessor, :distance
-  
-  def initialize(x, y, predecessor=nil, distance=nil )
+
+  def initialize(x, y, predecessor = nil, distance = nil)
     @x = x
     @y = y
     @predecessor = predecessor
@@ -14,18 +12,16 @@ class Place
 end
 
 class Knight
-
   # create a linked list from single place to later place into adjacency list
 
   def legal_moves(place)
     # list of possible moves
-    possible_directions = [[2,1],[1,2],[-1,2],[-2,1],[-2,-1],[-1,-2],[1,-2],[2,-1]]
+    possible_directions = [[2, 1], [1, 2], [-1, 2], [-2, 1], [-2, -1], [-1, -2], [1, -2], [2, -1]]
     # initalize array
     list = []
-    
+
     # for every key in possible directions
     possible_directions.each do |k|
-
       # get sum of x + y values
       result = []
       result.push((place.x + k[0]))
@@ -38,17 +34,14 @@ class Knight
       # create new place node and push into list
       new_place = Place.new(result[0], result[1])
       list.push(new_place)
-
     end
-    return list
-
+    list
   end
 
   # perform a breadth first search from a given start to a given end coordinate
   def bfs(start_coord, end_coord)
-
     # initalize start's distance with 0
-    start_coord.distance = 0;
+    start_coord.distance = 0
 
     # create a queue to store the node to be looked at, intialized with start
     queue = [start_coord]
@@ -63,12 +56,12 @@ class Knight
         predecessors = []
 
         # initialize predecessors with current
-        predecessors.push([current.x, current.y]);
+        predecessors.push([current.x, current.y])
 
         # store current parent being looked at
         curr_parent = current.predecessor
 
-        until (curr_parent == start_coord) do
+        until curr_parent == start_coord
           # update current parent
           predecessors.push([curr_parent.x, curr_parent.y])
           # loop to next
@@ -84,28 +77,26 @@ class Knight
 
       # for each legal move
       enq_list.each do |move|
-        if (move.distance.nil?)
-          # p "checking [#{move.x}, #{move.y}]"
-          move.distance = current.distance + 1
-          move.predecessor = current
-          queue.push(move)
-          # p "predecessor: [#{move.predecessor.x}, #{move.predecessor.y}]"
-          # p "distance: #{move.distance}"
-        end
-      end
-    end 
-  end
+        next unless move.distance.nil?
 
+        # p "checking [#{move.x}, #{move.y}]"
+        move.distance = current.distance + 1
+        move.predecessor = current
+        queue.push(move)
+      end
+    end
+  end
 
   def knight_moves(start, place_end)
     predecessors = bfs(start, place_end)
+    puts "Your knight made it in #{predecessors.length} moves!\nHeres your path:"
     # print predecessors in reverse order (from start to finish)
-    predecessors.reverse_each { |e| print e, "\n"}
+    predecessors.reverse_each { |e| print e, "\n" }
   end
 end
 
 knight = Knight.new
-start = Place.new(0,0)
-place_end = Place.new(7,7)
+start = Place.new(0, 0)
+place_end = Place.new(7, 7)
 
 knight.knight_moves(start, place_end)
